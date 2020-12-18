@@ -31,7 +31,7 @@ function App() {
           <Route exact path="/product/show/:id" component={ShowProduct} />
           <Route component={NotFound} />
         </Switch>
-        
+
       </div>
     </Router>
   );
