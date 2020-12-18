@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import ListProduct from './components/product/ListProduct'
+import AddProduct from './components/product/AddProduct'
+import EditProduct from './components/product/EditProduct'
+import ShowProduct from './components/product/ShowProduct'
+import About from './components/pages/About'
+import Home from './components/pages/Home'
+import NavBar from './components/layout/Navbar'
+import NotFound from './components/pages/NotFound'
+import Contact from './components/pages/Contact';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from "react-router-dom";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <NavBar></NavBar>
+
+        <Switch>
+        <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/about" component={Contact} />
+          <Route exact path="/product/add" component={AddProduct} />
+          <Route exact path="/product/" component={ListProduct} />
+          <Route exact path="/product/edit/:id" component={EditProduct} />
+          <Route exact path="/product/show/:id" component={ShowProduct} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
