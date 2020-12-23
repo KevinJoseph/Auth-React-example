@@ -32,9 +32,9 @@ function App() {
           <Route exact path="/about" component={Contact} />
           <Route exact path="/login" component={Login} />
 
-          <Route exact path="/product/add" component={props => <RequireAuth {...props} component={AddProduct} />} /> 
-          <Route exact path="/product/" component={props => <RequireAuth {...props} Component={ListProduct} />} />
-          <Route exact path="/product/edit/:id" component={props => <RequireAuth {...props} Component={EditProduct} />} />
+          <Route exact path="/product/add" component={props => <RequireAuth {...props} Component={AddProduct} />} /> 
+          <Route exact path="/product/" component={props => <RequireAuth {...props} Component={ListProduct} />}/>
+          <Route exact path="/product/edit/:id" component={props => <RequireAuth {...props} Component={EditProduct} />}/>
           <Route exact path="/product/show/:id" component={props => <RequireAuth {...props} Component={ShowProduct} />} />
           <Route component={NotFound} />
         </Switch>

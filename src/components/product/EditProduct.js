@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
+import AuthContext from '../../context/AuthContext'
 
 const EditProduct = () => {
   let history = useHistory();
+  
+  const { authData } = useContext(AuthContext);
   const API = "http://localhost:4000";
   const { id } = useParams();
 
@@ -26,12 +29,22 @@ const EditProduct = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    await axios.put(API+`/api/product/${id}`, product);
+    await axios.put(API+`/api/product/${id}`, product,{
+      headers:{
+        "Content-Type": "application/json",
+        "x-access-token": authData.token
+      }
+    });
     history.push("/product");
   };
 
   const loadProduct = async () => {
-    const result = await axios.get(API+`/api/product/${id}`);
+    const result = await axios.get(API+`/api/product/${id}`,{
+      headers:{
+        "Content-Type": "application/json",
+        "x-access-token": authData.token
+      }
+    });
     setProduct(result.data);
   };
   return (

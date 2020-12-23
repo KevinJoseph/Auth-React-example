@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
+import AuthContext from '../../context/AuthContext'
 import axios from "axios";
 
 const ShowProduct = () => {
   const API = "http://localhost:4000";
 
+  const { authData } = useContext(AuthContext);
   const [product, setProduct] = useState({
     name: "",
     category: "",
@@ -18,7 +20,12 @@ const ShowProduct = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadProduct = async () => {
-    const res = await axios.get(API+`/api/product/${id}`);
+    const res = await axios.get(API+`/api/product/${id}`,{
+      headers:{
+        "Content-Type": "application/json",
+        "x-access-token": authData.token
+      }
+    });
     setProduct(res.data);
   };
   return (

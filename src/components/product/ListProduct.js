@@ -29,7 +29,12 @@ const ListProduct = () => {
   };
 
   const deleteProduct = async id => {
-    await axios.delete(API+`/api/product/${id}`);
+    await axios.delete(API+`/api/product/${id}`,{
+      headers:{
+        "Content-Type": "application/json",
+        "x-access-token": authData.token
+      }
+    });
     loadProducts();
   };
 

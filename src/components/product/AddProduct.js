@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
+import AuthContext from '../../context/AuthContext'
 
 //REFERENT API
 const API = "http://localhost:4000"
 
+
 const AddProduct = () => {
+  const { authData } = useContext(AuthContext);
   let history = useHistory();
   const [product, setProduct] = useState({
     name: "",
@@ -29,7 +32,12 @@ const AddProduct = () => {
   const onSubmit = async e => {
     e.preventDefault();
 
-    await axios.post(API+"/api/product", product);
+    await axios.post(API+"/api/product", product,{
+      headers:{
+        "Content-Type": "application/json",
+        "x-access-token": authData.token
+      }
+    });
     history.push("/product");
   };
   return (
