@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/AuthContext";
 
-export default function AuthOptions() {
+export default function Logout() {
   const { authData, setAuthData } = useContext(UserContext);
 
   const history = useHistory();

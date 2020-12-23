@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import New from '../auth/New'
+import Logout from '../auth/Logout'
 
 const Navbar = () => {
   return (
@@ -44,7 +44,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <New></New>
+              <Logout></Logout>
             </li>
           </ul>
         </div>
