@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import AuthContext from '../../context/AuthContext'
 
 const ListProduct = () => {
+  const { authData } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
 
   //REFERENT API
@@ -10,11 +12,18 @@ const ListProduct = () => {
 
 
   useEffect(() => {
+    console.log(authData)
     loadProducts();
-  }, []); 
+  }, []); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   const loadProducts = async () => {
-    const result = await axios.get(API+"/api/product");
+    
+    const result = await axios.get(API+"/api/product",{
+      headers:{
+        "Content-Type": "application/json",
+        "x-access-token": authData.token
+      }
+    });
     console.log(result.data.reverse())
     setProducts(result.data.reverse());
   };
@@ -27,7 +36,8 @@ const ListProduct = () => {
   return (
     <div className="container">
       <div className="py-4">
-        <h1>Home Page</h1>
+        <h1>Module Product</h1>
+        <Link className="btn btn-outline-light" to="/product/add">Add Product</Link>
         <table className="table border shadow">
           <thead className="thead-dark">
             <tr>

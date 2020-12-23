@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import New from '../auth/New'
+
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -41,10 +43,13 @@ const Navbar = () => {
                 Product
               </NavLink>
             </li>
+            <li className="nav-item">
+              <New></New>
+            </li>
           </ul>
         </div>
 
-        <Link className="btn btn-outline-light" to="/product/add">Add Product</Link>
+
       </div>
     </nav>
   );
