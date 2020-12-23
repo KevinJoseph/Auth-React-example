@@ -15,6 +15,7 @@ export default function AuthOptions() {
     });
     localStorage.removeItem("auth-token")
     localStorage.removeItem("auth-user");
+    history.push("/login")
   };
 
   return (

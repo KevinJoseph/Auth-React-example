@@ -42,8 +42,10 @@ const ListProduct = () => {
     <div className="container">
       <div className="py-4">
         <h1>Module Product</h1>
-        <Link className="btn btn-outline-light" to="/product/add">Add Product</Link>
+        <Link className="btn btn-primary" to="/product/add">Add Product</Link>
+        <hr></hr>
         <table className="table border shadow">
+        
           <thead className="thead-dark">
             <tr>
               <th scope="col">#</th>
